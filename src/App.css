@@ -1,42 +1,81 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: lightgrey;
+}
+
+.appname {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
   text-align: center;
+  color: white;
+  font-weight: bold;
+  list-style-type: none;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.navbar-links li button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.content {
+  margin-left: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.content h1 {
+  color: black;
 }
 
-.card {
-  padding: 2em;
+
+.footer {
+  background-color: lightgrey;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: white;
 }
