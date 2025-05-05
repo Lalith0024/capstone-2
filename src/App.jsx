@@ -1,32 +1,40 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Category from './pages/Category';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <div className="page-container">
         <main className="main-content">
 
-          {/* Navigation Bar */}
           <nav className="navbar">
             <div className="appname">Recipe Maker</div>
 
             <ul className="navbar-links">
-              <li><button>Home</button></li>
-              <li><button>Category Wise</button></li>
-              <li><button>About Us</button></li>
-              <li><button>Contact Us</button></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/category">Category Wise</Link></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/contact">Contact Us</Link></li>
             </ul>
           </nav>
 
-          {/* Main Content */}
           <section className="content">
-            <h1>Find Your Perfect Recipe!</h1>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/category" element={<Category />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
           </section>
 
         </main>
 
-        {/* Footer */}
         <footer className="footer">
           <div className="footer-content">
             <p>© 2025 RecipeFinder</p>
@@ -37,9 +45,8 @@ function App() {
             </div>
           </div>
         </footer>
-
       </div>
-    </>
+    </BrowserRouter>
   );
 }
 
