@@ -1,41 +1,29 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/header';
 import Footer from './components/footer';
-import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png';
 import RecipeCard from './components/recipiename';
-
+import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png'; 
 
 function App() {
-  const recipes = [
-    {
-      name: "Margherita Pizza",
-      image: "https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg",
-    },
-    {
-      name: "Chicken Biryani",
-      image: "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg",
-    },
-    {
-      name: "Sushi",
-      image: "https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg",
-    },
-    {
-      name: "Pasta Alfredo",
-      image: "https://www.themealdb.com/images/media/meals/syqypv1486981727.jpg",
-    },
-    {
-      name: "Veg Manchurian",
-      image: "https://www.themealdb.com/images/media/meals/1525876468.jpg",
-    },
-    {
-      name: "Pancakes",
-      image: "https://www.themealdb.com/images/media/meals/rwuyqx1511383174.jpg",
-    },
-  ];
-  
   const [searchTerm, setSearchTerm] = useState('');
   const [message, setMessage] = useState('');
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
+      .then(res => res.json())
+      .then(data => {
+        if (data.meals) {
+          const mapped = data.meals.slice(0, 6).map(meal => ({
+            name: meal.strMeal,
+            image: meal.strMealThumb
+          }));
+          setRecipes(mapped);
+        }
+      });
+  }, []);
 
   const handleSearch = () => {
     if (searchTerm.trim() === '') {
@@ -53,7 +41,6 @@ function App() {
         <section
           className="hero-section"
           style={{
-            position: 'relative',
             backgroundImage: `url(${BackgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -102,34 +89,21 @@ function App() {
             </button>
           </div>
 
-          {message && (
-            <p
-              style={{
-                marginTop: '15px',
-                fontSize: '16px',
-                background: 'rgba(0,0,0,0.5)',
-                padding: '8px 16px',
-                borderRadius: '6px',
-              }}
-            >
-              {message}
-            </p>
-          )}
+          {message && (<p className='message'>{message}</p>)}
         </section>
 
         <section className="featured-recipes">
-      <h2>Popular Recipes</h2>
-      <p>Check out trending recipes loved by our users</p>
-      <div className="recipes-grid">
-        {recipes.map((r, i) => <RecipeCard key={i} recipe={r} />)}
-      </div>
-    </section>
+          <h2>Popular Recipes</h2>
+          <p>Check out trending recipes loved by our users</p>
+          
+         
+          <div className="recipes-scroll">
+            {recipes.map((r, i) => <RecipeCard key={i} recipe={r} />)}
+          </div>
+        </section>
+      </main>
 
-        {/* Later sections like Featured, Filters, Testimonials, etc. go here */}
-        </main>
-
-        <Footer />
-      
+      <Footer />
     </div>
   );
 }
