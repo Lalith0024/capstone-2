@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/RecipeName.css';
+import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/recipiename.css';
 
 const RecipeCard = ({ recipe }) => {
   return (

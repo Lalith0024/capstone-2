@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './style/App.css';
-import Header from './components/Header';
-import Footer from '/src/components/footer.jsx';
-import RecipeCard from './components/RecipeName';
-import CuisineCard from './components/CuisineCard';
-import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png';
+import './App.css'; // Correct path for App.css (no need for absolute path)
+import Header from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/header.jsx'; // Correct relative path for Header
+import Footer from '/Users/kasulalalithendra/Desktop/capstone-2/src/App.jsx'; // Correct relative path for Footer
+import RecipeCard from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/recipiename.jsx'; // Correct relative path for RecipeCard
+import CuisineCard from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/CuisineCard.jsx'; // Correct relative path for CuisineCard
+import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png'; // Correct relative path for BackgroundImage
+
 
 function App() {
   const trendingCuisines = [

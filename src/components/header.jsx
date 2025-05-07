@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './style/Header.css';
+import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/Header.css';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);

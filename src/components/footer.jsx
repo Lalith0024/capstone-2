@@ -1,5 +1,5 @@
 import React from "react";
-import './style/Footer.css';
+import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/Footer.css';
 
 const Footer = () => {
   return (

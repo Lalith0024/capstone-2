@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/CuisineCard.css';
+import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/CuisineCard.css';
 
 const CuisineCard = ({ cuisine }) => {
   return (
