@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import Header from './components/header';
-import Footer from './components/footer';
-import RecipeCard from './components/recipiename';
-import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png'; 
+import './style/App.css';
+import Header from './components/Header';
+import Footer from '/src/components/footer.jsx';
+import RecipeCard from './components/RecipeName';
 import CuisineCard from './components/CuisineCard';
+import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png';
 
 function App() {
   const trendingCuisines = [
@@ -123,22 +122,21 @@ function App() {
           <h2>Popular Recipes</h2>
           <p>Check out trending recipes loved by our users</p>
           
-          
           <div className="recipes-scroll">
             {recipes.map((r, i) => <RecipeCard key={i} recipe={r} />)}
           </div>
         </section>
 
         <section className="trending-cuisines">
-        <h2 style={{ marginTop: '60px' }}>Trending Cuisines Around the World 🌍</h2>
-        <p>Discover flavors from every corner of the globe</p>
+          <h2 style={{ marginTop: '60px' }}>Trending Cuisines Around the World 🌍</h2>
+          <p>Discover flavors from every corner of the globe</p>
 
-        <div className="recipes-scroll">
-          {trendingCuisines.map((cuisine, i) => (
-            <CuisineCard key={i} cuisine={cuisine} />
-          ))}
-        </div>
-      </section>
+          <div className="recipes-scroll">
+            {trendingCuisines.map((cuisine, i) => (
+              <CuisineCard key={i} cuisine={cuisine} />
+            ))}
+          </div>
+        </section>
 
       </main>
 

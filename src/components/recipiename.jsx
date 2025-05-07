@@ -1,12 +1,14 @@
-function RecipeCard({ recipe }) {
-    return (
-      <div className="recipe-card">
-        <img src={recipe.image} alt={recipe.name} />
-        <h3>{recipe.name}</h3>
-        <button>View Recipe</button>
-      </div>
-    );
-  }
-  
+import React from 'react';
+import './style/RecipeName.css';
+
+const RecipeCard = ({ recipe }) => {
+  return (
+    <div className="recipe-card">
+      <img src={recipe.image} alt={recipe.name} />
+      <h3>{recipe.name}</h3>
+      <button>View Recipe</button>
+    </div>
+  );
+}
+
 export default RecipeCard;
-  

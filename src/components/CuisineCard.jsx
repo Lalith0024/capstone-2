@@ -1,4 +1,5 @@
 import React from 'react';
+import './style/CuisineCard.css';
 
 const CuisineCard = ({ cuisine }) => {
   return (
@@ -11,4 +12,3 @@ const CuisineCard = ({ cuisine }) => {
 };
 
 export default CuisineCard;
-

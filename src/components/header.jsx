@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useState } from 'react';
+import './style/Header.css';
 
 const Header = () => {
-    return(
-        <>
-        <nav className="navbar">
-            <div className="appname">Recipe Maker</div>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-            <ul className="navbar-links">
-              <li>Home</li>
-              <li>Category Wise</li>
-              <li>About Us</li>
-              <li>Contact Us</li>
-            </ul>
-          </nav>
-        </>
-    )
-    
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
+  return (
+    <nav className="navbar">
+      <div className="appname">Recipe Maker</div>
+
+      <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+        <li>Home</li>
+        <li>Category Wise</li>
+        <li>About Us</li>
+        <li>Contact Us</li>
+      </ul>
+
+      <div className="hamburger" onClick={toggleMenu}>
+        &#9776;
+      </div>
+    </nav>
+  );
 }
+
 export default Header;
