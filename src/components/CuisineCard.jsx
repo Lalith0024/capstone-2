@@ -1,14 +1,17 @@
 import React from 'react';
-import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/CuisineCard.css';
+import  '../App.css' ;
 
-const CuisineCard = ({ cuisine }) => {
+function CuisineCard({cuisineList}) {
   return (
-    <div className="recipe-card">
-      <img src={cuisine.image} alt={cuisine.name} />
-      <h3>{cuisine.name}</h3>
-      <button>Explore</button>
+    <div style={{display:"flex", gap:"20px", overflowX:"scroll", padding:"20px"}}>
+      {cuisineList.map((cuisine,i) => (
+        <div key={i} className="card_box">
+          <img src={cuisine.image} alt={cuisine.name} />
+          <h3>{cuisine.name}eufge</h3>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
 export default CuisineCard;

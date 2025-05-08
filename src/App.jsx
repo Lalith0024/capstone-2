@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'; // Correct path for App.css (no need for absolute path)
-import Header from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/header.jsx'; // Correct relative path for Header
-import Footer from '/Users/kasulalalithendra/Desktop/capstone-2/src/App.jsx'; // Correct relative path for Footer
-import RecipeCard from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/recipiename.jsx'; // Correct relative path for RecipeCard
-import CuisineCard from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/CuisineCard.jsx'; // Correct relative path for CuisineCard
-import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png'; // Correct relative path for BackgroundImage
-
+import './App.css';
+import Header from './components/header';
+import Footer from './components/footer';
+import RecipeCard from './components/recipiename.jsx';
+import CuisineCard from './components/CuisineCard.jsx';
+import BackgroundImage from '/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png';
 
 function App() {
   const trendingCuisines = [
@@ -32,11 +31,72 @@ function App() {
     {
       name: "French",
       image: "https://www.themealdb.com/images/category/dessert.png"
+    },
+  {
+    
+      name: "Indian",
+      image: "https://www.themealdb.com/images/category/beef.png"
+    },
+    {
+      name: "Japanese",
+      image: "https://www.themealdb.com/images/category/chicken.png"
+    },
+    {
+      name: "Chinese",
+      image: "https://www.themealdb.com/images/category/lamb.png"
+    },
+    {
+      name: "French",
+      image: "https://www.themealdb.com/images/category/dessert.png"
     }
   ];
+
+  const Recipes = [
+    {
+      name: "Italian",
+      image: "https://www.themealdb.com/images/category/pasta.png"
+    },
+    {
+      name: "Mexican",
+      image: "https://www.themealdb.com/images/category/miscellaneous.png"
+    },
+    {
+      name: "Indian",
+      image: "https://www.themealdb.com/images/category/beef.png"
+    },
+    {
+      name: "Japanese",
+      image: "https://www.themealdb.com/images/category/chicken.png"
+    },
+    {
+      name: "Chinese",
+      image: "https://www.themealdb.com/images/category/lamb.png"
+    },
+    {
+      name: "French",
+      image: "https://www.themealdb.com/images/category/dessert.png"
+    },
+    {
+      name: "Indian",
+      image: "https://www.themealdb.com/images/category/beef.png"
+    },
+    {
+      name: "Japanese",
+      image: "https://www.themealdb.com/images/category/chicken.png"
+    },
+    {
+      name: "Chinese",
+      image: "https://www.themealdb.com/images/category/lamb.png"
+    },
+    {
+      name: "French",
+      image: "https://www.themealdb.com/images/category/dessert.png"
+    }
+  ];
+
   const [searchTerm, setSearchTerm] = useState('');
   const [message, setMessage] = useState('');
-  const [recipes, setRecipes] = useState([]);
+  const [Recipies, setRecipes] = useState([]);
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
@@ -81,7 +141,7 @@ function App() {
             padding: '40px 20px',
           }}
         >
-          <h1 style={{ fontSize: '2.5rem', marginBottom: '10px' }}>Find Your Perfect Recipe 🍲</h1>
+          <h1 style={{ fontSize: '2.5rem', marginBottom: '10px'}}>Find Your Perfect Recipe</h1>
           <p style={{ fontSize: '18px', marginBottom: '20px' }}>
             Search thousands of recipes by name or tag
           </p>
@@ -120,25 +180,22 @@ function App() {
         </section>
 
         <section className="featured-recipes">
-          <h2>Popular Recipes</h2>
-          <p>Check out trending recipes loved by our users</p>
-          
+          <h2 style={{marginLeft:'20px'}}>Popular Recipes</h2>
+          <p style={{marginLeft:'20px'}}>Check out trending recipes loved by our users</p>
+
           <div className="recipes-scroll">
-            {recipes.map((r, i) => <RecipeCard key={i} recipe={r} />)}
+            <RecipeCard Recipes={Recipes} />
           </div>
         </section>
 
         <section className="trending-cuisines">
-          <h2 style={{ marginTop: '60px' }}>Trending Cuisines Around the World 🌍</h2>
-          <p>Discover flavors from every corner of the globe</p>
+          <h2 style={{ marginTop: '60px',marginLeft:'20px'}}>Trending Cuisines Around the World </h2>
+          <p style={{marginLeft:'20px'}}>Discover flavors from every corner of the globe</p>
 
           <div className="recipes-scroll">
-            {trendingCuisines.map((cuisine, i) => (
-              <CuisineCard key={i} cuisine={cuisine} />
-            ))}
+          <CuisineCard cuisineList={trendingCuisines}/>
           </div>
         </section>
-
       </main>
 
       <Footer />
@@ -146,4 +203,4 @@ function App() {
   );
 }
 
-export default App;
+export default App; 
