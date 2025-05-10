@@ -1,17 +1,16 @@
-import React from 'react';
-import  '../App.css' ;
-
-function CuisineCard({cuisineList}) {
+function CuisineCard({ cuisineList }) {
+  const duplicated = [...cuisineList, ...cuisineList]; // For seamless loop
   return (
-    <div style={{display:"flex", gap:"20px", overflowX:"scroll", padding:"20px"}}>
-      {cuisineList.map((cuisine,i) => (
-        <div key={i} className="card_box">
-          <img src={cuisine.image} alt={cuisine.name} />
-          <h3>{cuisine.name}eufge</h3>
-        </div>
-      ))}
+    <div className="auto-scroll-container">
+      <div className="auto-scroll-track">
+        {duplicated.map((cuisine, i) => (
+          <div key={i} className="card_box">
+            <img src={cuisine.image} alt={cuisine.name} />
+            <h3>{cuisine.name}</h3>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
 export default CuisineCard;
