@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 
@@ -7,27 +7,40 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isShaking, setIsShaking] = useState(false);
-  const [buttonPosition, setButtonPosition] = useState({ top: 0, left: 0 });
+  const [errorShown, setErrorShown] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  const btnRef = useRef(null);
 
   const validateEmail = email.includes('@');
-  const isFormValid = validateEmail && password.length > 0;
+  const isFormValid = validateEmail && password.length > 0 && agreed;
+
+  const shiftClasses = ['shift-left', 'shift-right', 'shift-top', 'shift-bottom'];
+
+  const resetButtonPosition = () => {
+    shiftClasses.forEach(cls => btnRef.current?.classList.remove(cls));
+  };
 
   const handleHover = () => {
     if (!isFormValid) {
-      setIsShaking(true);
-      setButtonPosition({
-        top: Math.random() * 80 - 40,
-        left: Math.random() * 80 - 40,
-      });
-      setTimeout(() => setIsShaking(false), 400);
+      const currentClass = shiftClasses.find(cls => btnRef.current.classList.contains(cls));
+      const nextClass =
+        shiftClasses[(shiftClasses.indexOf(currentClass) + 1) % shiftClasses.length];
+
+      shiftClasses.forEach(cls => btnRef.current.classList.remove(cls));
+      btnRef.current.classList.add(nextClass);
+      setErrorShown(true);
+    } else {
+      resetButtonPosition();
     }
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (isFormValid) {
+      resetButtonPosition();
       navigate('/home');
+    } else {
+      setErrorShown(true);
     }
   };
 
@@ -41,7 +54,7 @@ const Login = () => {
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Login to Continue</h2>
 
-        <div className={`input-box ${!validateEmail && email ? 'error' : ''}`}>
+        <div className={`input-box ${errorShown && !validateEmail ? 'error' : ''}`}>
           <label>Email</label>
           <input
             type="email"
@@ -49,10 +62,12 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {!validateEmail && email && <span className="tooltip">Must include '@'</span>}
+          {errorShown && !validateEmail && (
+            <span className="tooltip">Must include '@'</span>
+          )}
         </div>
 
-        <div className={`input-box ${password === '' && email !== '' ? 'error' : ''}`}>
+        <div className={`input-box ${errorShown && password === '' ? 'error' : ''}`}>
           <label>Password</label>
           <input
             type={showPassword ? 'text' : 'password'}
@@ -66,19 +81,34 @@ const Login = () => {
           >
             {showPassword ? 'Hide' : 'Show'}
           </span>
-          {password === '' && email !== '' && <span className="tooltip">Password required</span>}
+          {errorShown && password === '' && (
+            <span className="tooltip">Password required</span>
+          )}
         </div>
 
-        <button
-          className={`login-btn ${isShaking ? 'shake' : ''}`}
-          style={{
-            transform: `translate(${buttonPosition.left}px, ${buttonPosition.top}px)`
-          }}
-          onMouseEnter={handleHover}
-          type="submit"
-        >
-          Log In
-        </button>
+        <div className="checkbox-wrapper">
+          <input
+            type="checkbox"
+            id="agree"
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+          />
+          <label htmlFor="agree">I accept the Terms & Conditions</label>
+        </div>
+        {errorShown && !agreed && (
+          <span className="tooltip">You must accept terms to continue</span>
+        )}
+
+        <div className="button-wrapper">
+          <button
+            ref={btnRef}
+            className="login-btn"
+            type="submit"
+            onMouseEnter={handleHover}
+          >
+            Log In
+          </button>
+        </div>
 
         <p className="register-link">
           Don’t have an account? <a href="#">Register</a>
