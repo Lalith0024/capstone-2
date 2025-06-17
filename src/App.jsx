@@ -4,98 +4,27 @@ import Header from './components/header';
 import Footer from './components/footer';
 import RecipeCard from './components/recipiename.jsx';
 import CuisineCard from './components/CuisineCard.jsx';
-import BackgroundImage from "/Users/kasulalalithendra/Desktop/capstone-2/pages/ChatGPT Image Jun 16, 2025, 03_32_27 PM.png"
+import BackgroundImage from "/Users/kasulalalithendra/Desktop/capstone-2/pages/ChatGPT Image Jun 16, 2025, 03_32_27 PM.png";
+
 function App() {
-  const trendingCuisines = [
-    {
-      name: "Italian",
-      image: "https://www.themealdb.com/images/category/pasta.png"
-    },
-    {
-      name: "Mexican",
-      image: "https://www.themealdb.com/images/category/miscellaneous.png"
-    },
-    {
-      name: "Indian",
-      image: "https://www.themealdb.com/images/category/beef.png"
-    },
-    {
-      name: "Japanese",
-      image: "https://www.themealdb.com/images/category/chicken.png"
-    },
-    {
-      name: "Chinese",
-      image: "https://www.themealdb.com/images/category/lamb.png"
-    },
-    {
-      name: "French",
-      image: "https://www.themealdb.com/images/category/dessert.png"
-    },
-  {
-    
-      name: "Indian",
-      image: "https://www.themealdb.com/images/category/beef.png"
-    },
-    {
-      name: "Japanese",
-      image: "https://www.themealdb.com/images/category/chicken.png"
-    },
-    {
-      name: "Chinese",
-      image: "https://www.themealdb.com/images/category/lamb.png"
-    },
-    {
-      name: "French",
-      image: "https://www.themealdb.com/images/category/dessert.png"
-    }
-  ];
-
-  const Recipes = [
-    {
-      name: "Italian",
-      image: "https://www.themealdb.com/images/category/pasta.png"
-    },
-    {
-      name: "Mexican",
-      image: "https://www.themealdb.com/images/category/miscellaneous.png"
-    },
-    {
-      name: "Indian",
-      image: "https://www.themealdb.com/images/category/beef.png"
-    },
-    {
-      name: "Japanese",
-      image: "https://www.themealdb.com/images/category/chicken.png"
-    },
-    {
-      name: "Chinese",
-      image: "https://www.themealdb.com/images/category/lamb.png"
-    },
-    {
-      name: "French",
-      image: "https://www.themealdb.com/images/category/dessert.png"
-    },
-    {
-      name: "Indian",
-      image: "https://www.themealdb.com/images/category/beef.png"
-    },
-    {
-      name: "Japanese",
-      image: "https://www.themealdb.com/images/category/chicken.png"
-    },
-    {
-      name: "Chinese",
-      image: "https://www.themealdb.com/images/category/lamb.png"
-    },
-    {
-      name: "French",
-      image: "https://www.themealdb.com/images/category/dessert.png"
-    }
-  ];
-
   const [searchTerm, setSearchTerm] = useState('');
   const [message, setMessage] = useState('');
   const [Recipies, setRecipes] = useState([]);
+
+  const trendingCuisines = [
+    { name: "Italian", image: "https://www.themealdb.com/images/category/pasta.png" },
+    { name: "Mexican", image: "https://www.themealdb.com/images/category/miscellaneous.png" },
+    { name: "Indian", image: "https://www.themealdb.com/images/category/beef.png" },
+    { name: "Japanese", image: "https://www.themealdb.com/images/category/chicken.png" },
+    { name: "Chinese", image: "https://www.themealdb.com/images/category/lamb.png" },
+    { name: "French", image: "https://www.themealdb.com/images/category/dessert.png" },
+    { name: "Indian", image: "https://www.themealdb.com/images/category/beef.png" },
+    { name: "Japanese", image: "https://www.themealdb.com/images/category/chicken.png" },
+    { name: "Chinese", image: "https://www.themealdb.com/images/category/lamb.png" },
+    { name: "French", image: "https://www.themealdb.com/images/category/dessert.png" }
+  ];
+
+  const Recipes = trendingCuisines; // Reusing trendingCuisines for demo purposes
 
   useEffect(() => {
     fetch('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
@@ -124,6 +53,7 @@ function App() {
       <main className="main-content">
         <Header />
 
+        {/* Hero Section */}
         <section
           className="hero-section"
           style={{
@@ -178,29 +108,27 @@ function App() {
           {message && (<p className='message'>{message}</p>)}
         </section>
 
+        {/* Popular Recipes */}
         <section className="featured-recipes">
           <h2 style={{marginLeft:'20px'}}>Popular Recipes</h2>
           <p style={{marginLeft:'20px'}}>Check out trending recipes loved by our users</p>
-
           <div className="recipes-scroll">
             <RecipeCard Recipes={Recipes} />
           </div>
         </section>
 
+        {/* Trending Cuisines */}
         <section className="trending-cuisines">
           <h2 style={{ marginTop: '60px',marginLeft:'20px'}}>Trending Cuisines Around the World </h2>
           <p style={{marginLeft:'20px'}}>Discover flavors from every corner of the globe</p>
-
           <div className="recipes-scroll">
-          <CuisineCard cuisineList={trendingCuisines}/>
+            <CuisineCard cuisineList={trendingCuisines}/>
           </div>
         </section>
       </main>
-      
-
       <Footer />
     </div>
   );
 }
 
-export default App; 
+export default App;
