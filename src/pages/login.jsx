@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';
+import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
