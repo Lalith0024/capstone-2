@@ -4,7 +4,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import RecipeCard from './components/recipiename.jsx';
 import CuisineCard from './components/CuisineCard.jsx';
-import BackgroundImage from "/var/folders/23/tz9v24v10v7dk3_ff4vmpzfh0000gn/T/TemporaryItems/NSIRD_screencaptureui_aB4twu/Screenshot 2025-05-06 at 10.00.47 PM.png"
+import BackgroundImage from "/Users/kasulalalithendra/Desktop/capstone-2/pages/ChatGPT Image Jun 16, 2025, 03_32_27 PM.png"
 function App() {
   const trendingCuisines = [
     {
