@@ -1,173 +1,344 @@
-/* General Reset */
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-/* Layout */
 .register-container {
   display: flex;
   height: 100vh;
-  background: linear-gradient(135deg, #fff5e6, #ffe0cc);
+  background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .register-illustration {
   flex: 1;
-  background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') no-repeat center;
-  background-size: cover;
+  background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover no-repeat;
   color: white;
-  padding: 60px;
+  padding: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.brand-name {
-  font-size: 48px;
-  color: #fff;
-  font-weight: 800;
+.register-illustration .brand-name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
-.tagline {
-  font-size: 20px;
-  margin-top: 10px;
-  color: #fbe7d1;
+.register-illustration .tagline {
+  font-size: 1.5rem;
+  opacity: 0.9;
 }
 
-/* Register Form */
 .register-form {
   flex: 1;
   background: white;
-  padding: 60px;
+  padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: -20px 0 60px rgba(255, 165, 0, 0.1);
-  position: relative;
+  animation: slideIn 0.8s ease;
 }
 
 .register-form h2 {
-  font-size: 28px;
-  margin-bottom: 25px;
-  color: #ff6600;
+  margin-bottom: 2rem;
+  color: #ff6f00;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .input-box {
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem;
   position: relative;
 }
 
 .input-box label {
   display: block;
-  margin-bottom: 6px;
-  color: #333;
+  margin-bottom: 0.5rem;
   font-weight: 600;
 }
 
 .input-box input {
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  transition: all 0.3s;
-  font-size: 16px;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 .input-box input:focus {
-  border-color: #ff6600;
+  border-color: #ff9800;
+  box-shadow: 0 0 5px rgba(255, 152, 0, 0.4);
   outline: none;
-}
-
-.tooltip {
-  font-size: 13px;
-  color: red;
-  margin-top: 5px;
-  display: block;
-  animation: fadeIn 0.3s ease-in-out;
 }
 
 .input-box.error input {
   border-color: red;
+  background-color: #ffe5e5;
 }
 
-.toggle-password {
-  position: absolute;
-  top: 34px;
-  right: 15px;
-  cursor: pointer;
-  color: #ff6600;
-  font-size: 14px;
+.terms-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
-/* Submit Button */
+.terms-box input {
+  margin-right: 0.5rem;
+}
+
 .register-btn {
-  margin-top: 10px;
-  padding: 12px;
-  font-size: 16px;
-  background: #ff6600;
+  padding: 0.75rem;
+  background-color: #ff6f00;
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
-  width: 160px;
-  align-self: center;
+  transition: all 0.3s ease;
 }
 
 .register-btn:hover {
-  background: #e65700;
+  background-color: #e65100;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
 }
 
-/* Progress Bar */
-.progress-bar {
-  height: 8px;
-  width: 100%;
-  background: #ffe0cc;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  overflow: hidden;
+.register-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-.progress {
-  height: 100%;
-  width: 0;
-  background: #ff6600;
-  transition: width 0.4s ease;
+.login-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
-/* Terms Checkbox */
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-  font-size: 14px;
-  color: #333;
+.login-link a {
+  color: #ff6f00;
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.checkbox input {
-  accent-color: #ff6600;
+.login-link a:hover {
+  text-decoration: underline;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ✅ ADDITIONS START HERE ONLY */
+.show-toggle {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #888;
+  user-select: none;
 }
+
+.show-toggle:hover {
+  color: #ff6f00;
+}
+
+.strength {
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.strength.weak {
+  color: #ef5350;
+}
+
+.strength.medium {
+  color: #fb8c00;
+}
+
+.strength.strong {
+  color: #2e7d32;
+}
+
+.strength-weak input {
+  border-color: #ef5350 !important;
+}
+
+.strength-medium input {
+  border-color: #ffa726 !important;
+}
+
+.strength-strong input {
+  border-color: #66bb6a !important;
+}
+
+.tooltip {
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.tooltip.valid {
+  color: #2e7d32;
+}
+
+.tooltip.invalid {
+  color: #d32f2f;
+}
+
+.confetti {
+  z-index: 9999;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+}
+
+/* ✅ ADDITIONS END HERE ONLY */
 
 /* Responsive */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .register-container {
     flex-direction: column;
   }
+
   .register-illustration {
-    height: 250px;
-    padding: 30px;
-    background-position: center;
+    height: 40vh;
+    text-align: center;
+    padding: 2rem;
   }
+
   .register-form {
-    padding: 40px 20px;
+    padding: 2rem;
   }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Show/Hide Password Toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 70px;
+}
+
+.show-hide-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff6600;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  user-select: none;
+}
+
+/* Password Input Visual Strength Feedback */
+.input-box input.weak {
+  border-color: red;
+}
+
+.input-box input.medium {
+  border-color: orange;
+}
+
+.input-box input.strong {
+  border-color: green;
+}
+.redirect-home {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.redirect-home a {
+  color: #ff6600;
+  text-decoration: underline;
+  font-weight: bold;
+}
+/* 3D-style Popup animation */
+.redirect-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.redirect-popup.show-popup {
+  display: flex;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.popup-box {
+  background: linear-gradient(135deg, #ff8a00, #ffc300);
+  color: white;
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  transform: rotateY(360deg) scale(0.9);
+  animation: popupBounce 1s ease-in-out forwards;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes popupBounce {
+  0% {
+    transform: rotateY(90deg) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(180deg) scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: rotateY(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Blur background when redirecting */
+.register-form.redirecting {
+  pointer-events: none;
+  opacity: 0.4;
+  filter: blur(3px);
+}
+.redirect-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  color: white;
+  border-radius: 20px;
+  padding: 2rem 3rem;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  z-index: 9999;
+  animation: popupFadeIn 0.5s ease;
 }

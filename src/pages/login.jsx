@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
+import { Link } from 'react-router-dom';
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -111,7 +113,7 @@ const Login = () => {
         </div>
 
         <p className="register-link">
-          Don’t have an account? <a href="#">Register</a>
+          Don’t have an account? <Link to="/register">Register</Link>
         </p>
       </form>
     </div>

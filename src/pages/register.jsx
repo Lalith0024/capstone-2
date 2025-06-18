@@ -1,121 +1,214 @@
-import React, { useState } from 'react';
-import '../style/register.css';
+import React, { useState} from "react";
+import "../style/register.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
+
+  const [step, setStep] = useState(1);
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
+  const [humanCheck, setHumanCheck] = useState(false);
 
-  const validate = () => {
-    const newErrors = {};
-    if (!email.includes('@')) newErrors.email = "Must include '@'";
-    else if (!username) newErrors.username = 'Username required';
-    else if (!password) newErrors.password = 'Password required';
-    else if (password.length < 6) newErrors.password = 'Min 6 characters';
-    else if (confirmPassword !== password) newErrors.confirmPassword = 'Passwords do not match';
-    else if (!acceptedTerms) newErrors.terms = 'You must accept the terms';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const isEmailValid = email.includes("@") && email.includes(".");
+  const isUsernameValid = username.length >= 4;
+  const isPasswordStrong =
+    password.length >= 6 && /[A-Z]/.test(password) && /[!@#$%^&*]/.test(password);
+  const doPasswordsMatch = password === confirmPass;
+
+  const getPasswordStrength = () => {
+    if (isPasswordStrong) return "strong";
+    else if (password.length >= 4) return "medium";
+    return "weak";
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      // Placeholder: Navigate or register logic
-      alert('Registered successfully!');
+  const handleNext = () => {
+    if (step === 1 && isEmailValid) setStep(2);
+    else if (step === 2 && isUsernameValid) setStep(3);
+    else if (step === 3 && isPasswordStrong) setStep(4);
+  };
+
+  const handleRegister = () => {
+    if (doPasswordsMatch && acceptedTerms && humanCheck) {
+      setShowPopup(true);
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000); // 2-second delay
+    }
+  };
+
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return (
+          <div className={`input-box ${email && !isEmailValid ? "error" : email && isEmailValid ? "valid" : ""}`}>
+            <label>Email</label>
+            <input
+              type="email"
+              placeholder="example@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {email && (
+              <span className={`tooltip ${isEmailValid ? "valid" : "invalid"}`}>
+                {isEmailValid ? "Email looks valid" : "Include '@' and '.'"}
+              </span>
+            )}
+          </div>
+        );
+      case 2:
+        return (
+          <div className={`input-box ${username && !isUsernameValid ? "error" : username && isUsernameValid ? "valid" : ""}`}>
+            <label>Username</label>
+            <input
+              type="text"
+              placeholder="Minimum 4 characters"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            {username && (
+              <span className={`tooltip ${isUsernameValid ? "valid" : "invalid"}`}>
+                {isUsernameValid ? "Username available" : "Minimum 4 characters required"}
+              </span>
+            )}
+          </div>
+        );
+      case 3:
+        return (
+          <div className={`input-box ${password && !isPasswordStrong ? "error" : password && isPasswordStrong ? "valid" : ""}`}>
+            <label>Password</label>
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Create a strong password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={getPasswordStrength()}
+              />
+              <span
+                className="show-hide-toggle"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </span>
+            </div>
+            {password && (
+              <>
+                <span className={`strength ${getPasswordStrength()}`}>
+                  Strength: {getPasswordStrength()}
+                </span>
+                <span className={`tooltip ${isPasswordStrong ? "valid" : "invalid"}`}>
+                  Use 6+ chars, 1 uppercase, 1 special character
+                </span>
+              </>
+            )}
+          </div>
+        );
+      case 4:
+        return (
+          <>
+            <div className={`input-box ${confirmPass && !doPasswordsMatch ? "error" : confirmPass && doPasswordsMatch ? "valid" : ""}`}>
+              <label>Confirm Password</label>
+              <div className="password-wrapper">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Re-enter password"
+                  value={confirmPass}
+                  onChange={(e) => setConfirmPass(e.target.value)}
+                />
+                <span
+                  className="show-hide-toggle"
+                  onClick={() => setShowConfirmPassword((prev) => !prev)}
+                >
+                  {showConfirmPassword ? "Hide" : "Show"}
+                </span>
+              </div>
+              {confirmPass && (
+                <span className={`tooltip ${doPasswordsMatch ? "valid" : "invalid"}`}>
+                  {doPasswordsMatch ? "Passwords match" : "Passwords do not match"}
+                </span>
+              )}
+            </div>
+
+            <div className="terms-box">
+              <input
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={() => setAcceptedTerms(!acceptedTerms)}
+              />
+              <label>I accept the terms and conditions</label>
+            </div>
+
+            <div className="terms-box">
+              <input
+                type="checkbox"
+                checked={humanCheck}
+                onChange={() => setHumanCheck(!humanCheck)}
+              />
+              <label>I'm not a robot</label>
+            </div>
+          </>
+        );
+      default:
+        return null;
     }
   };
 
   return (
     <div className="register-container">
       <div className="register-illustration">
-        <h1 className="brand-name">🍲 Recipe Maker</h1>
-        <p className="tagline">Create. Share. Inspire.</p>
+        <h1 className="brand-name">Recipe Maker</h1>
+        <p className="tagline">Cook, Create & Share your favorite dishes!</p>
       </div>
 
-      <form className="register-form" onSubmit={handleRegister}>
-        <h2>Create Account</h2>
+      <form className="register-form" onSubmit={(e) => e.preventDefault()} data-step={step}>
+        <h2>{step < 4 ? "Create Account" : "Confirm Details"}</h2>
+        {renderStep()}
 
-        <div className={`input-box ${errors.email ? 'error' : ''}`}>
-          <label>Email</label>
-          <input
-            type="email"
-            placeholder="example@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errors.email && <span className="tooltip">{errors.email}</span>}
-        </div>
-
-        <div className={`input-box ${errors.username ? 'error' : ''}`}>
-          <label>Username</label>
-          <input
-            type="text"
-            placeholder="Your Name"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          {errors.username && <span className="tooltip">{errors.username}</span>}
-        </div>
-
-        <div className={`input-box ${errors.password ? 'error' : ''}`}>
-          <label>Password</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="••••••••"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span
-            className="toggle-password"
-            onClick={() => setShowPassword(!showPassword)}
+        {step < 4 ? (
+          <button
+            type="button"
+            className="register-btn"
+            onClick={handleNext}
+            disabled={
+              (step === 1 && !isEmailValid) ||
+              (step === 2 && !isUsernameValid) ||
+              (step === 3 && !isPasswordStrong)
+            }
           >
-            {showPassword ? 'Hide' : 'Show'}
-          </span>
-          {errors.password && <span className="tooltip">{errors.password}</span>}
-        </div>
-
-        <div className={`input-box ${errors.confirmPassword ? 'error' : ''}`}>
-          <label>Confirm Password</label>
-          <input
-            type={showConfirmPassword ? 'text' : 'password'}
-            placeholder="••••••••"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <span
-            className="toggle-password"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            Next →
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="register-btn final"
+            onClick={handleRegister}
+            disabled={!doPasswordsMatch || !acceptedTerms || !humanCheck}
           >
-            {showConfirmPassword ? 'Hide' : 'Show'}
-          </span>
-          {errors.confirmPassword && <span className="tooltip">{errors.confirmPassword}</span>}
+            Register
+          </button>
+        )}
+
+        <div className="login-link">
+          Already have an account? <Link to="/login">Login</Link>
         </div>
-
-        <div className="checkbox-container">
-          <input
-            type="checkbox"
-            checked={acceptedTerms}
-            onChange={(e) => setAcceptedTerms(e.target.checked)}
-            id="terms"
-          />
-          <label htmlFor="terms"> I agree to the Terms and Privacy Policy</label>
-        </div>
-        {errors.terms && <span className="tooltip">{errors.terms}</span>}
-
-        <button className="register-btn" type="submit" disabled={!acceptedTerms}>
-          Register
-        </button>
-
-        <p className="login-link">
-          Already have an account? <a href="#">Log In</a>
-        </p>
       </form>
+
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h2>🎉 Registered Successfully!</h2>
+            <p>Redirecting to Home…</p>
+            <div className="loader"></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
