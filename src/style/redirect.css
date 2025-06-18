@@ -1,0 +1,110 @@
+/* redirect.css */
+
+.redirect-page {
+  height: 100vh;
+  background: #ffffff; /* Plain white background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  animation: enterPage 1s ease-in-out;
+}
+
+@keyframes enterPage {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.popup {
+  background: #ffffffee;
+  padding: 3rem 4rem;
+  border-radius: 24px;
+  box-shadow: 0 0 50px rgba(255, 122, 0, 0.3);
+  text-align: center;
+  z-index: 2;
+  animation: popupZoom 0.8s ease-in-out;
+}
+
+@keyframes popupZoom {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.success-text {
+  font-size: 2.8rem;
+  color: #ff7a00; /* Theme orange */
+  font-weight: 800;
+  animation: glowOrange 1.5s infinite alternate;
+}
+
+@keyframes glowOrange {
+  from {
+    text-shadow: 0 0 8px #ff7a00;
+  }
+  to {
+    text-shadow: 0 0 18px #ffa64d, 0 0 30px #ff944d;
+  }
+}
+
+.subtext {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 1rem;
+  animation: fadeText 2s ease;
+}
+
+@keyframes fadeText {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.confetti-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-color: #ff7a00; /* Orange theme confetti */
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: popBurst 1.2s ease-in-out forwards;
+}
+
+@keyframes popBurst {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-300px) scale(1.4) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-1000px) scale(0.3) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Burst confetti placement */
+.confetti:nth-child(1)  { left: 5%; animation-delay: 0s; }
+.confetti:nth-child(2)  { left: 12%; animation-delay: 0.05s; }
+.confetti:nth-child(3)  { left: 20%; animation-delay: 0.1s; }
+.confetti:nth-child(4)  { left: 28%; animation-delay: 0.15s; }
+.confetti:nth-child(5)  { left: 36%; animation-delay: 0.2s; }
+.confetti:nth-child(6)  { left: 44%; animation-delay: 0.25s; }
+.confetti:nth-child(7)  { left: 52%; animation-delay: 0.3s; }
+.confetti:nth-child(8)  { left: 60%; animation-delay: 0.35s; }
+.confetti:nth-child(9)  { left: 68%; animation-delay: 0.4s; }
+.confetti:nth-child(10) { left: 76%; animation-delay: 0.45s; }
+.confetti:nth-child(11) { left: 84%; animation-delay: 0.5s; }
+.confetti:nth-child(12) { left: 92%; animation-delay: 0.55s; }

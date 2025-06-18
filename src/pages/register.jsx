@@ -1,10 +1,8 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "../style/register.css";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const navigate = useNavigate();
-
   const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -13,8 +11,8 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-  const [humanCheck, setHumanCheck] = useState(false);
+
+  const navigate = useNavigate();
 
   const isEmailValid = email.includes("@") && email.includes(".");
   const isUsernameValid = username.length >= 4;
@@ -29,17 +27,15 @@ const Register = () => {
   };
 
   const handleNext = () => {
-    if (step === 1 && isEmailValid) setStep(2);
-    else if (step === 2 && isUsernameValid) setStep(3);
-    else if (step === 3 && isPasswordStrong) setStep(4);
-  };
-
-  const handleRegister = () => {
-    if (doPasswordsMatch && acceptedTerms && humanCheck) {
-      setShowPopup(true);
-      setTimeout(() => {
-        navigate("/home");
-      }, 2000); // 2-second delay
+    if (step === 1 && isEmailValid) {
+      setStep(2);
+    } else if (step === 2 && isUsernameValid) {
+      setStep(3);
+    } else if (step === 3 && isPasswordStrong) {
+      setStep(4);
+    } else if (step === 4 && doPasswordsMatch && acceptedTerms) {
+      // Redirect to /redirecting
+      navigate("/redirecting");
     }
   };
 
@@ -135,7 +131,6 @@ const Register = () => {
                 </span>
               )}
             </div>
-
             <div className="terms-box">
               <input
                 type="checkbox"
@@ -143,15 +138,6 @@ const Register = () => {
                 onChange={() => setAcceptedTerms(!acceptedTerms)}
               />
               <label>I accept the terms and conditions</label>
-            </div>
-
-            <div className="terms-box">
-              <input
-                type="checkbox"
-                checked={humanCheck}
-                onChange={() => setHumanCheck(!humanCheck)}
-              />
-              <label>I'm not a robot</label>
             </div>
           </>
         );
@@ -170,45 +156,24 @@ const Register = () => {
       <form className="register-form" onSubmit={(e) => e.preventDefault()} data-step={step}>
         <h2>{step < 4 ? "Create Account" : "Confirm Details"}</h2>
         {renderStep()}
-
-        {step < 4 ? (
-          <button
-            type="button"
-            className="register-btn"
-            onClick={handleNext}
-            disabled={
-              (step === 1 && !isEmailValid) ||
-              (step === 2 && !isUsernameValid) ||
-              (step === 3 && !isPasswordStrong)
-            }
-          >
-            Next →
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="register-btn final"
-            onClick={handleRegister}
-            disabled={!doPasswordsMatch || !acceptedTerms || !humanCheck}
-          >
-            Register
-          </button>
-        )}
+        <button
+          type="button"
+          className="register-btn"
+          onClick={handleNext}
+          disabled={
+            (step === 1 && !isEmailValid) ||
+            (step === 2 && !isUsernameValid) ||
+            (step === 3 && !isPasswordStrong) ||
+            (step === 4 && (!doPasswordsMatch || !acceptedTerms))
+          }
+        >
+          {step < 4 ? "Next →" : "Register"}
+        </button>
 
         <div className="login-link">
           Already have an account? <Link to="/login">Login</Link>
         </div>
       </form>
-
-      {showPopup && (
-        <div className="popup-overlay">
-          <div className="popup-box">
-            <h2>🎉 Registered Successfully!</h2>
-            <p>Redirecting to Home…</p>
-            <div className="loader"></div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
