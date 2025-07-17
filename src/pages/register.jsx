@@ -167,7 +167,7 @@ const Register = () => {
             (step === 4 && (!doPasswordsMatch || !acceptedTerms))
           }
         >
-          {step < 4 ? "Next →" : "Register"}
+          {step < 4 ? "Next →" : "Register"} 
         </button>
 
         <div className="login-link">
