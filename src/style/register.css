@@ -1,7 +1,7 @@
 .register-container {
   display: flex;
   height: 100vh;
-  background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); /* softer  shade than white use this >white */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 

@@ -1,4 +1,4 @@
-/* General Reset */
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -6,7 +6,7 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Layout */
+
 .login-container {
   display: flex;
   height: 100vh;
