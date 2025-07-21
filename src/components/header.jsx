@@ -1,25 +1,68 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import '../style/Header.css';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setUserMenuOpen(!userMenuOpen);
+  };
 
   return (
-    <nav className="navbar">
-      <div className="appname">Recipe Maker</div>
+    <header className={`navbar${menuOpen ? ' blur-bg' : ''}`}>
+      <div className="appname">
+        <Link to="/home">RecipeHunt</Link>
+      </div>
 
-      <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
-        <li>Home</li>
-        <li>Categories</li>
-        <li>About Us</li>
-        <li>Contact Us</li>
+      <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+        <li>
+          <Link to="/home" className={location.pathname === '/home' ? 'active' : ''}>
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''}>
+            Categories
+          </Link>
+        </li>
+        <li>
+          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
+            About
+          </Link>
+        </li>
+        <li>
+          <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
+            Contact
+          </Link>
+        </li>
+        <li className="user-menu">
+          <span onClick={toggleUserMenu} className="user-icon">
+            <FaUserCircle size={26} />
+          </span>
+          {userMenuOpen && (
+            <div className="user-dropdown">
+              <Link to="/login">Login</Link>
+              <Link to="/register">Register</Link>
+            </div>
+          )}
+        </li>
       </ul>
 
-      <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-        <div className="bar" style={{ transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }}></div>
-        <div className="bar" style={{ opacity: menuOpen ? 0 : 1 }}></div>
-        <div className="bar" style={{ transform: menuOpen ? "rotate(-45deg) translate(6px, -6px)" : "none" }}></div>
+      <div className="hamburger" onClick={toggleMenu}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
       </div>
-    </nav>
+      {menuOpen && <div className="side-drawer-bg" onClick={toggleMenu}></div>}
+    </header>
   );
 };
 

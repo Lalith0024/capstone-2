@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/register.css";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [step, setStep] = useState(1);
@@ -34,8 +35,10 @@ const Register = () => {
     } else if (step === 3 && isPasswordStrong) {
       setStep(4);
     } else if (step === 4 && doPasswordsMatch && acceptedTerms) {
-      // Redirect to /redirecting
-      navigate("/redirecting");
+      toast.success('Registration successful');
+      navigate('/home');
+    } else {
+      toast.error('Please fill all fields correctly');
     }
   };
 

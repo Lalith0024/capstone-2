@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -40,9 +41,11 @@ const Login = () => {
     e.preventDefault();
     if (isFormValid) {
       resetButtonPosition();
+      toast.success('Login successful');
       navigate('/home');
     } else {
       setErrorShown(true);
+      toast.error('Please fill all fields correctly');
     }
   };
 

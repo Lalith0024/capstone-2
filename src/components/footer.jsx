@@ -8,10 +8,12 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-section">
         <h3>Quick Links</h3>
-        <Link to="/about">About Us</Link>
-        <Link to="/home">Services</Link>
-        <Link to="/privacy-policy">Privacy Policy</Link>
-        <Link to="/terms">Terms of Service</Link>
+        <div className="footer-links-list">
+          <Link to="/home">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/categories">Categories</Link>
+          
+        </div>
       </div>
 
       <div className="footer-section">
@@ -39,9 +41,9 @@ const Footer = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>© 2025 Your Company Name. All rights reserved.</p>
+        <p>© 2025 RecipieHunt All rights reserved.</p>
       </div>
-      <button className="gotopbtn">⬆</button>
+      <button className="gotopbtn" style={{height:"30px",width:"30px",backgroundColor:"black"}}>⬆</button>
 
     </footer>
   );

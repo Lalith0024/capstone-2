@@ -1,7 +1,11 @@
 import React from "react";
+import Header from "../components/header";
+import Footer from "../components/footer";
 const Category = () => {
     return(
+
         <>
+        <Header/>
         <div className="category">
             <h1>Category Wise</h1>
             <div className="category-list">
@@ -12,6 +16,7 @@ const Category = () => {
                 <div className="category-item">Thai</div>
             </div>
         </div>
+        <Footer/>
         </>
     )
 }

@@ -1,23 +1,17 @@
+// main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
-import Login from './pages/Login.jsx';
-import Register from '/Users/kasulalalithendra/Desktop/capstone-2/src/pages/register.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<App />} />
-        <Route path="/register" element={<Register />} />
-        {/* <Route path="/redirecting" element={<RedirectPage />} /> */}
-      </Routes>
+      <App />
+      <ToastContainer />
     </BrowserRouter>
   </React.StrictMode>
 );

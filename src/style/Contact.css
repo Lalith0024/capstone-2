@@ -1,0 +1,115 @@
+/* src/style/contact.css */
+.contact-container {
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  padding: 60px 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.contact-wrapper {
+  max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #ffe0cc;
+}
+
+.contact-subtitle {
+  font-size: 16px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #f5d3bb;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: white;
+  font-size: 16px;
+  resize: none;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #e0e0e0;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.contact-form button {
+  background-color: #ff7043;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-form button:hover {
+  background-color: #ff5722;
+  transform: scale(1.05);
+}
+
+
+.floating-food {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 3rem;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .contact-wrapper {
+    padding: 25px;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+  }
+
+  .floating-food {
+    right: 15px;
+    font-size: 2.5rem;
+  }
+}
