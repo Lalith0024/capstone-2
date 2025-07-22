@@ -10,29 +10,10 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (drawerOpen) {
-      document.body.classList.add('drawer-blur');
-    } else {
-      document.body.classList.remove('drawer-blur');
-    }
-    return () => document.body.classList.remove('drawer-blur');
-  }, [drawerOpen]);
-
   const handleProfileClick = () => {
     setDrawerOpen(false);
     navigate('/profile');
   };
-
-  const isMobile = () => window.innerWidth <= 800;
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      if (!isMobile() && drawerOpen) setDrawerOpen(false);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [drawerOpen]);
 
   const navLinks = (
     <ul className="navbar-links">
@@ -57,11 +38,7 @@ const Header = () => {
         </Link>
       </li>
       <li className="user-menu" onClick={handleProfileClick} style={{cursor:'pointer'}}>
-        {isMobile() ? (
-          <span className="profile-mobile">Profile</span>
-        ) : (
-          <span className="profile-desktop"><FaUserCircle size={26} /></span>
-        )}
+        <span className="profile-desktop"><FaUserCircle size={26} /></span>
       </li>
     </ul>
   );
@@ -81,10 +58,9 @@ const Header = () => {
         closable={true}
         onClose={() => setDrawerOpen(false)}
         open={drawerOpen}
-        bodyStyle={{ padding: 0, background: '#fff7f0', transition: 'background 0.3s' }}
+        bodyStyle={{ padding: 0, background: '#fff7f0' }}
         width={260}
         className="mobile-drawer"
-        style={{ transition: 'all 0.4s cubic-bezier(.68,-0.55,.27,1.55)' }}
       >
         {navLinks}
       </Drawer>

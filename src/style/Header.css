@@ -1,15 +1,13 @@
 .navbar {
   top: 0;
-  z-index: 999;
   background-color: #ff6600;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 18px 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
+  transition: all 0.2s;
 }
-
 .appname a {
   font-size: 32px;
   font-weight: bold;
@@ -17,7 +15,6 @@
   color: #ffffff;
   text-decoration: none;
 }
-
 .navbar-links {
   display: flex;
   align-items: center;
@@ -33,19 +30,17 @@
   font-size: 1.05rem;
   font-weight: 600;
   padding: 8px 12px;
-  transition: color 0.2s, font-weight 0.2s;
+  transition: all 0.2s;
   position: relative;
   letter-spacing: 0.02em;
   background: none;
 }
-
 .navbar-links a:hover,
 .navbar-links a.active {
-  background: none;
   color: #fff;
   letter-spacing: 0.04em;
+  background: none;
 }
-
 .navbar-links a::after {
   content: '';
   position: absolute;
@@ -53,36 +48,30 @@
   bottom: 0;
   width: 0;
   height: 2px;
-  background: rgba(255,255,255,0.85);
+  background: #fff;
   border-radius: 2px;
-  transition: width 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: all 0.2s;
   pointer-events: none;
 }
-
 .navbar-links a:hover::after,
 .navbar-links a.active::after {
   width: 100%;
 }
-
 .navbar-links a:not(:hover):not(.active)::after {
   transition: none;
 }
-
 .navbar-links a.active {
   font-weight: 800;
 }
-
 .navbar-links a.active::after {
   width: 100%;
 }
-
 .profile-desktop {
   display: inline;
   vertical-align: middle;
   color: #fff;
   margin-left: 2px;
 }
-
 @media screen and (max-width: 800px) {
   .navbar-links a::after {
     display: none;
@@ -91,7 +80,6 @@
     display: none;
   }
 }
-
 .navbar-links a.active {
   font-weight: 700;
   color: #fff;
@@ -121,17 +109,14 @@
     padding: 8px 8px;
   }
 }
-
 .navbar-links-desktop {
   display: flex;
 }
-
 .hamburger-mobile {
   display: none;
   cursor: pointer;
   margin-left: 18px;
 }
-
 @media screen and (max-width: 800px) {
   .navbar-links-desktop {
     display: none;
@@ -152,36 +137,18 @@
     max-width: unset;
     padding: 0;
     animation: none;
-    z-index: 1;
     border-radius: 0;
-    backdrop-filter: none;
   }
 }
-
 .drawer-blur {
   overflow: hidden;
 }
-.drawer-blur::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 998;
-  backdrop-filter: blur(7px) brightness(0.85);
-  background: rgba(0,0,0,0.18);
-  pointer-events: none;
-  transition: backdrop-filter 0.3s, background 0.3s;
-}
-
 .mobile-drawer .ant-drawer-content {
   border-left: 4px solid #ff6600;
   box-shadow: 0 0 24px 0 rgba(255, 102, 0, 0.10), 0 2px 8px rgba(0,0,0,0.08);
   background: #fff7f0;
-  transition: box-shadow 0.3s, background 0.3s;
+  transition: all 0.2s;
 }
-
 .mobile-drawer .navbar-links {
   display: flex;
   flex-direction: column;
@@ -209,7 +176,7 @@
   color: #ff6600;
   background: none;
   border-radius: 0;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s;
   position: relative;
 }
 .mobile-drawer .navbar-links a.active::before {
@@ -240,10 +207,9 @@
   border-radius: 12px;
   background: none;
   box-shadow: none;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition: all 0.2s;
 }
 .mobile-drawer .user-menu:hover {
   background: none;
-  color: #ff6600;
 }
 

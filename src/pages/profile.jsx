@@ -10,7 +10,7 @@ function Profile() {
   const [editOpen, setEditOpen] = useState(false);
   const [profile, setProfile] = useState({
     name: 'Lalith Kasula',
-    email: 'lalith@example.com',
+    email: 'lalith@gmail.com',
     address: 'Hyderabad, India',
   });
   const [editProfile, setEditProfile] = useState(profile);
