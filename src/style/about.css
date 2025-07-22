@@ -151,7 +151,7 @@
   }
 }
 
-/* RESPONSIVE */
+
 @media screen and (max-width: 768px) {
   .about-content {
     flex-direction: column;

@@ -31,7 +31,7 @@ function Category() {
 
   function fetchRecipes() {
     setLoading(true);
-    let url = 'https://api.spoonacular.com/recipes/complexSearch?number=12&addRecipeInformation=true&apiKey=dc902937ed244bfbaa7961cc0e792d6a';
+    let url = 'https://api.spoonacular.com/recipes/complexSearch?number=12&addRecipeInformation=true&apiKey=d5dc6a6d47af468fa68072cc1f0700b9';
     if (category) {
       url += `&type=${category}`;
     }
@@ -51,7 +51,7 @@ function Category() {
     } else {
       setModalLoading(true);
       setModalOpen(true);
-      fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=dc902937ed244bfbaa7961cc0e792d6a`)
+      fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=d5dc6a6d47af468fa68072cc1f0700b9`)
         .then(res => res.json())
         .then(data => {
           setSelectedRecipe(data);
@@ -96,18 +96,6 @@ function Category() {
                     <div className="recipe-meta">
                       <span>🕒 {recipe.readyInMinutes} min</span>
                       <span>{recipe.servings} servings</span>
-                    </div>
-                    <div className="category-ingredients">
-                      <span className="ingredients-label">Ingredients:</span>
-                      <ul className="ingredients-list">
-                        {recipe.extendedIngredients && recipe.extendedIngredients.length > 0 ? (
-                          recipe.extendedIngredients.slice(0, 4).map((ing, idx) => (
-                            <li key={idx}>{ing.original}</li>
-                          ))
-                        ) : (
-                          <li>No ingredients listed.</li>
-                        )}
-                      </ul>
                     </div>
                     <button className="view-recipe-btn" onClick={() => openModal(recipe)}>View Recipe</button>
                     {recipe.dishTypes && recipe.dishTypes.length > 0 && (

@@ -6,11 +6,11 @@ import Footer from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/f
 function Home() {
   const heroImages = [
     'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80',
+    // 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80',
     'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1523987355523-c7b5b0723c6a?auto=format&fit=crop&w=1200&q=80',
+    // 'https://images.unsplash.com/photo-1523987355523-c7b5b0723c6a?auto=format&fit=crop&w=1200&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=80',
+    // 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=80',
   ];
   const [heroIndex, setHeroIndex] = useState(0);
   const [recipes, setRecipes] = useState([]);
@@ -34,7 +34,7 @@ function Home() {
 
   function fetchRandomRecipes() {
     setLoading(true);
-    fetch('https://api.spoonacular.com/recipes/random?number=12&apiKey=dc902937ed244bfbaa7961cc0e792d6a')
+    fetch('https://api.spoonacular.com/recipes/random?number=12&apiKey=d5dc6a6d47af468fa68072cc1f0700b9')
       .then(res => res.json())
       .then(data => {
         setRecipes(data.recipes || []);
@@ -44,7 +44,7 @@ function Home() {
 
   function fetchSearchRecipes(query) {
     setLoading(true);
-    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${encodeURIComponent(query)}&number=12&addRecipeInformation=true&apiKey=dc902937ed244bfbaa7961cc0e792d6a`)
+    fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${encodeURIComponent(query)}&number=12&addRecipeInformation=true&apiKey=d5dc6a6d47af468fa68072cc1f0700b9`)
       .then(res => res.json())
       .then(data => {
         setRecipes(data.results || []);
@@ -64,16 +64,16 @@ function Home() {
   }
 
   function openModal(recipe) {
-    // If recipe has extendedIngredients, show directly
+    
     if (recipe.extendedIngredients && recipe.instructions) {
       setSelectedRecipe(recipe);
       setModalOpen(true);
       setModalLoading(false);
     } else {
-      // Fetch full info by ID
+      
       setModalLoading(true);
       setModalOpen(true);
-      fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=dc902937ed244bfbaa7961cc0e792d6a`)
+      fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=d5dc6a6d47af468fa68072cc1f0700b9`)
         .then(res => res.json())
         .then(data => {
           setSelectedRecipe(data);
@@ -180,7 +180,11 @@ function Home() {
                   <h3>Instructions</h3>
                   <div className="modal-instructions">
                     {selectedRecipe.instructions ? (
-                      <p>{selectedRecipe.instructions}</p>
+                      selectedRecipe.instructions.trim().startsWith('<ol>') ? (
+                        <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
+                      ) : (
+                        <p>{selectedRecipe.instructions}</p>
+                      )
                     ) : selectedRecipe.analyzedInstructions && selectedRecipe.analyzedInstructions.length > 0 ? (
                       <ol>
                         {selectedRecipe.analyzedInstructions[0].steps.map((step, idx) => (

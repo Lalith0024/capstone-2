@@ -30,9 +30,7 @@ function About() {
             reviving your grandma's forgotten curry, we're here to help.
           </p>
         </div>
-        <div className="image-block">
-          <img src="https://images.unsplash.com/photo-1556911073-52527ac437f5" alt="cooking" />
-        </div>
+        
       </section>
 
     

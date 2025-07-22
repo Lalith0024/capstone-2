@@ -6,6 +6,10 @@ import Footer from '../components/footer';
 import { toast } from 'react-toastify';
 
 function Contact() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success('Message sent successfully');
+  };
   return (
     <>
     <Header/>
@@ -23,12 +27,8 @@ function Contact() {
 
         <form
           className="contact-form"
-          action="https://api.web3forms.com/submit"
-          method="POST"
-          onSubmit={() => toast.success('Message sent successfully')}
+          onSubmit={handleSubmit}
         >
-          <input type="hidden" name="access_key" value="your-web3forms-access-key-here" />
-
           <input
             type="text"
             name="name"

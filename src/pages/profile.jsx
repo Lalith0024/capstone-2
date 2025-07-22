@@ -17,7 +17,7 @@ function Profile() {
 
   const handleLogout = () => {
     toast.success('Logged out successfully');
-    navigate('/login');
+    navigate('/');
   };
   const handleBack = () => {
     navigate(-1);
