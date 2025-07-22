@@ -52,7 +52,6 @@ function Contact() {
         </form>
       </div>
 
-      {/* Floating food emoji */}
       <div className="floating-food">🍝</div>
     </section>
     <Footer/>

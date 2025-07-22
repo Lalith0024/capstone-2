@@ -43,109 +43,78 @@ const Register = () => {
   };
 
   const renderStep = () => {
-    switch (step) {
-      case 1:
-        return (
-          <div className={`input-box ${email && !isEmailValid ? "error" : email && isEmailValid ? "valid" : ""}`}>
-            <label>Email</label>
-            <input
-              type="email"
-              placeholder="example@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {email && (
-              <span className={`tooltip ${isEmailValid ? "valid" : "invalid"}`}>
-                {isEmailValid ? "Email looks valid" : "Include '@' and '.'"}
-              </span>
-            )}
-          </div>
-        );
-      case 2:
-        return (
-          <div className={`input-box ${username && !isUsernameValid ? "error" : username && isUsernameValid ? "valid" : ""}`}>
-            <label>Username</label>
-            <input
-              type="text"
-              placeholder="Minimum 4 characters"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            {username && (
-              <span className={`tooltip ${isUsernameValid ? "valid" : "invalid"}`}>
-                {isUsernameValid ? "Username available" : "Minimum 4 characters required"}
-              </span>
-            )}
-          </div>
-        );
-      case 3:
-        return (
-          <div className={`input-box ${password && !isPasswordStrong ? "error" : password && isPasswordStrong ? "valid" : ""}`}>
+    if (step === 1) {
+      return (
+        <div className="input-box">
+          <label>Email</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+          />
+        </div>
+      );
+    } else if (step === 2) {
+      return (
+        <div className="input-box">
+          <label>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Choose a username"
+          />
+        </div>
+      );
+    } else if (step === 3) {
+      return (
+        <>
+          <div className="input-box">
             <label>Password</label>
-            <div className="password-wrapper">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Create a strong password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className={getPasswordStrength()}
-              />
-              <span
-                className="show-hide-toggle"
-                onClick={() => setShowPassword((prev) => !prev)}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </span>
-            </div>
-            {password && (
-              <>
-                <span className={`strength ${getPasswordStrength()}`}>
-                  Strength: {getPasswordStrength()}
-                </span>
-                <span className={`tooltip ${isPasswordStrong ? "valid" : "invalid"}`}>
-                  Use 6+ chars, 1 uppercase, 1 special character
-                </span>
-              </>
-            )}
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Create a password"
+            />
+            <span
+              className="show-hide-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </span>
           </div>
-        );
-      case 4:
-        return (
-          <>
-            <div className={`input-box ${confirmPass && !doPasswordsMatch ? "error" : confirmPass && doPasswordsMatch ? "valid" : ""}`}>
-              <label>Confirm Password</label>
-              <div className="password-wrapper">
-                <input
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Re-enter password"
-                  value={confirmPass}
-                  onChange={(e) => setConfirmPass(e.target.value)}
-                />
-                <span
-                  className="show-hide-toggle"
-                  onClick={() => setShowConfirmPassword((prev) => !prev)}
-                >
-                  {showConfirmPassword ? "Hide" : "Show"}
-                </span>
-              </div>
-              {confirmPass && (
-                <span className={`tooltip ${doPasswordsMatch ? "valid" : "invalid"}`}>
-                  {doPasswordsMatch ? "Passwords match" : "Passwords do not match"}
-                </span>
-              )}
-            </div>
-            <div className="terms-box">
-              <input
-                type="checkbox"
-                checked={acceptedTerms}
-                onChange={() => setAcceptedTerms(!acceptedTerms)}
-              />
-              <label>I accept the terms and conditions</label>
-            </div>
-          </>
-        );
-      default:
-        return null;
+          <div className="input-box">
+            <label>Confirm Password</label>
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              value={confirmPass}
+              onChange={(e) => setConfirmPass(e.target.value)}
+              placeholder="Confirm your password"
+            />
+            <span
+              className="show-hide-toggle"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? "Hide" : "Show"}
+            </span>
+          </div>
+        </>
+      );
+    } else if (step === 4) {
+      return (
+        <>
+          <div className="input-box">
+            <label>Email</label>
+            <input type="text" value={email} disabled />
+          </div>
+          <div className="input-box">
+            <label>Username</label>
+            <input type="text" value={username} disabled />
+          </div>
+        </>
+      );
     }
   };
 

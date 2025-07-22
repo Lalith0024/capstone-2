@@ -1,67 +1,93 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../style/Header.css';
+import { Drawer } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import { FaUserCircle } from 'react-icons/fa';
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  React.useEffect(() => {
+    if (drawerOpen) {
+      document.body.classList.add('drawer-blur');
+    } else {
+      document.body.classList.remove('drawer-blur');
+    }
+    return () => document.body.classList.remove('drawer-blur');
+  }, [drawerOpen]);
+
+  const handleProfileClick = () => {
+    setDrawerOpen(false);
+    navigate('/profile');
   };
 
-  const toggleUserMenu = () => {
-    setUserMenuOpen(!userMenuOpen);
-  };
+  const isMobile = () => window.innerWidth <= 800;
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (!isMobile() && drawerOpen) setDrawerOpen(false);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [drawerOpen]);
+
+  const navLinks = (
+    <ul className="navbar-links">
+      <li>
+        <Link to="/home" className={location.pathname === '/home' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Categories
+        </Link>
+      </li>
+      <li>
+        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          About
+        </Link>
+      </li>
+      <li>
+        <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Contact
+        </Link>
+      </li>
+      <li className="user-menu" onClick={handleProfileClick} style={{cursor:'pointer'}}>
+        {isMobile() ? (
+          <span className="profile-mobile">Profile</span>
+        ) : (
+          <span className="profile-desktop"><FaUserCircle size={26} /></span>
+        )}
+      </li>
+    </ul>
+  );
 
   return (
-    <header className={`navbar${menuOpen ? ' blur-bg' : ''}`}>
+    <header className="navbar">
       <div className="appname">
-        <Link to="/home">RecipeHunt</Link>
+        <Link to="/home" style={{ fontSize: 32, fontWeight: 'bold', letterSpacing: 2 }}>RecipeHunt</Link>
       </div>
-
-      <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
-        <li>
-          <Link to="/home" className={location.pathname === '/home' ? 'active' : ''}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''}>
-            Categories
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>
-            Contact
-          </Link>
-        </li>
-        <li className="user-menu">
-          <span onClick={toggleUserMenu} className="user-icon">
-            <FaUserCircle size={26} />
-          </span>
-          {userMenuOpen && (
-            <div className="user-dropdown">
-              <Link to="/login">Login</Link>
-              <Link to="/register">Register</Link>
-            </div>
-          )}
-        </li>
-      </ul>
-
-      <div className="hamburger" onClick={toggleMenu}>
-        <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span>
+      <div className="navbar-links-desktop">{navLinks}</div>
+      <div className="hamburger-mobile" onClick={() => setDrawerOpen(true)}>
+        <MenuOutlined style={{ fontSize: 28, color: '#fff' }} />
       </div>
-      {menuOpen && <div className="side-drawer-bg" onClick={toggleMenu}></div>}
+      <Drawer
+        title={<Link to="/home" onClick={() => setDrawerOpen(false)} style={{ color: '#ff6600', fontWeight: 'bold', fontSize: 22 }}>RecipeHunt</Link>}
+        placement="left"
+        closable={true}
+        onClose={() => setDrawerOpen(false)}
+        open={drawerOpen}
+        bodyStyle={{ padding: 0, background: '#fff7f0', transition: 'background 0.3s' }}
+        width={260}
+        className="mobile-drawer"
+        style={{ transition: 'all 0.4s cubic-bezier(.68,-0.55,.27,1.55)' }}
+      >
+        {navLinks}
+      </Drawer>
     </header>
   );
 };

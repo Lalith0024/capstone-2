@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../style/Footer.css";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-// pending go to top button complete it 
 const Footer = () => {
   return (
     <footer className="footer">
@@ -12,7 +11,6 @@ const Footer = () => {
           <Link to="/home">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/categories">Categories</Link>
-          
         </div>
       </div>
 

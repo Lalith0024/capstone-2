@@ -1,4 +1,3 @@
-// src/pages/home.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import '../style/home.css';
 import RecipeCard from '../components/recipiename';
@@ -96,13 +95,6 @@ function Home() {
         <p style={{ marginLeft: '20px' }}>Check out trending recipes loved by our users</p>
         <div className="recipes-scroll">
           <RecipeCard Recipes={Recipies} />
-        </div>
-      </section>
-      <section className="trending-cuisines">
-        <h2 style={{ marginTop: '60px', marginLeft: '20px' }}>Trending Cuisines Around the World</h2>
-        <p style={{ marginLeft: '20px' }}>Discover flavors from every corner of the globe</p>
-        <div className="recipes-scroll">
-          <CuisineCard cuisineList={[]}/>
         </div>
       </section>
       <Footer/>

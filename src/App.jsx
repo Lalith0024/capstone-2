@@ -8,6 +8,7 @@ import Contact from './pages/contact';
 import Categories from './pages/category';
 import Login from './pages/Login';
 import Register from './pages/register';
+import Profile from './pages/profile';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
       
