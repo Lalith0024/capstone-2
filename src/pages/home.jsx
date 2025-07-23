@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../style/home.css';
-import Header from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/header.jsx';
-import Footer from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/footer.jsx';
+import Header from '../components/header.jsx';
+import Footer from '../components/footer.jsx';
 
 function Home() {
   const heroImages = [

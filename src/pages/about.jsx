@@ -1,5 +1,5 @@
 import React from 'react';
-import '/Users/kasulalalithendra/Desktop/capstone-2/src/style/about.css';
+import '../style/about.css';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -8,15 +8,13 @@ function About() {
     <>
     <Header/>
     <div className="about-wrapper">
-      <section className="hero">
-        <div className="hero-overlay">
-          <div className="hero-text fade-in-up">
-            <h1>Discover the Taste of Home</h1>
-            <p>
-              At RecipeFinder, we're not just about food 4we're about memories. Our mission is to
-              bring flavors from around the world to your kitchen with love, accuracy, and ease.
-            </p>
-          </div>
+      <section className="hero fade-in-up">
+        <div className="hero-content-centered">
+          <h1>Discover the Taste of Home</h1>
+          <p>
+            At RecipeFinder, we're not just about food—we're about memories. Our mission is to
+            bring flavors from around the world to your kitchen with love, accuracy, and ease.
+          </p>
         </div>
       </section>
       <section className="about-content fade-in">

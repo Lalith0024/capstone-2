@@ -1,6 +1,6 @@
 import React from 'react';
 import '../style/contact.css';
-import BackgroundImage from '/Users/kasulalalithendra/Desktop/capstone-2/pages/ChatGPT Image Jun 16, 2025, 03_32_27 PM.png';
+import BackgroundImage from '../../images/ChatGPT Image Jun 16, 2025, 03_32_27 PM.png';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { toast } from 'react-toastify';
