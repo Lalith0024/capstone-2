@@ -1,5 +1,5 @@
 import React from 'react';
-import '../style/contact.css';
+import '../style/Contact.css';
 import BackgroundImage from '../../images/ChatGPT Image Jun 16, 2025, 03_32_27 PM.png';
 import Header from '../components/header';
 import Footer from '../components/footer';
