@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import Header from './components/header';
-import Footer from './components/footer';
-import Home from './pages/home';
-import About from './pages/about';
-import Contact from './pages/contact';
-import Categories from './pages/category';
+import Header from './components/header.jsx';
+import Footer from './components/footer.jsx';
+import Home from './pages/home.jsx';
+import About from './pages/about.jsx';
+import Contact from './pages/contact.jsx';
+import Categories from './pages/category.jsx';
 import Login from './pages/login.jsx';
-import Register from './pages/register';
-import Profile from './pages/profile';
+import Register from './pages/register.jsx';
+import Profile from './pages/profile.jsx';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
 

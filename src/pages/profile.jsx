@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from '../components/header.jsx';
+import Footer from '../components/footer.jsx';
 import '../style/profile.css';
 
 function Profile() {
