@@ -6,7 +6,7 @@ import Home from './pages/home';
 import About from './pages/about';
 import Contact from './pages/contact';
 import Categories from './pages/category';
-import Login from './pages/Login';
+import Login from './pages/Login.jsx';
 import Register from './pages/register';
 import Profile from './pages/profile';
 
