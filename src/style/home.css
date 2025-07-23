@@ -346,8 +346,8 @@ body {
 }
 .hero-carousel {
   width: 100%;
-  height: 340px;
-  min-height: 180px;
+  height: 600px;
+  min-height: 200px;
   max-height: 420px;
   position: relative;
   display: flex;
