@@ -129,7 +129,7 @@
   position: absolute;
   top: 50%;
   right: 1rem;
-  transform: translateY(-50%);
+  
   cursor: pointer;
   font-size: 1.1rem;
   color: #888;
@@ -234,7 +234,7 @@
   position: absolute;
   right: 16px;
   top: 50%;
-  transform: translateY(-50%);
+  margin-top: 8px;
   color: #ff6600;
   font-weight: bold;
   cursor: pointer;

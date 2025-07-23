@@ -6,11 +6,8 @@ import Footer from '/Users/kasulalalithendra/Desktop/capstone-2/src/components/f
 function Home() {
   const heroImages = [
     'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
-    // 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80',
     'https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=1200&q=80',
-    // 'https://images.unsplash.com/photo-1523987355523-c7b5b0723c6a?auto=format&fit=crop&w=1200&q=80',
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80',
-    // 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=80',
   ];
   const [heroIndex, setHeroIndex] = useState(0);
   const [recipes, setRecipes] = useState([]);
@@ -64,13 +61,11 @@ function Home() {
   }
 
   function openModal(recipe) {
-    
     if (recipe.extendedIngredients && recipe.instructions) {
       setSelectedRecipe(recipe);
       setModalOpen(true);
       setModalLoading(false);
     } else {
-      
       setModalLoading(true);
       setModalOpen(true);
       fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=d5dc6a6d47af468fa68072cc1f0700b9`)
@@ -137,9 +132,11 @@ function Home() {
                       <span>🕒 {recipe.readyInMinutes} min</span>
                       <span>{recipe.servings} servings</span>
                     </div>
-                    <button className="view-recipe-btn" onClick={() => openModal(recipe)}>
-                      View Recipe
-                    </button>
+                    <div style={{width:'100%'}}>
+                      <button className="view-recipe-btn" style={{width:'100%'}} onClick={() => openModal(recipe)}>
+                        View Recipe
+                      </button>
+                    </div>
                     {recipe.dishTypes && recipe.dishTypes.length > 0 && (
                       <span className="recipe-tag">{recipe.dishTypes[0]}</span>
                     )}
@@ -152,7 +149,7 @@ function Home() {
       </section>
       {modalOpen && (
         <div className="modal-bg" onClick={closeModal}>
-          <div className="modal-box" onClick={e => e.stopPropagation()}>
+          <div className="modal-box" style={{padding:'32px 24px 32px 24px'}} onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>&times;</button>
             {modalLoading || !selectedRecipe ? (
               <div className="modal-loading">Loading...</div>
@@ -180,17 +177,9 @@ function Home() {
                   <h3>Instructions</h3>
                   <div className="modal-instructions">
                     {selectedRecipe.instructions ? (
-                      selectedRecipe.instructions.trim().startsWith('<ol>') ? (
-                        <div dangerouslySetInnerHTML={{ __html: selectedRecipe.instructions }} />
-                      ) : (
-                        <p>{selectedRecipe.instructions}</p>
-                      )
+                      <p>{selectedRecipe.instructions.replace(/<[^>]+>/g, '').replace(/\d+\./g, '').replace(/\s+/g, ' ').trim()}</p>
                     ) : selectedRecipe.analyzedInstructions && selectedRecipe.analyzedInstructions.length > 0 ? (
-                      <ol>
-                        {selectedRecipe.analyzedInstructions[0].steps.map((step, idx) => (
-                          <li key={idx}>{step.step}</li>
-                        ))}
-                      </ol>
+                      <p>{selectedRecipe.analyzedInstructions[0].steps.map((step) => step.step).join(' ')}</p>
                     ) : (
                       <p>No instructions available.</p>
                     )}

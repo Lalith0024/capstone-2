@@ -4,7 +4,6 @@ import '../style/login.css';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -28,7 +27,6 @@ const Login = () => {
       const currentClass = shiftClasses.find(cls => btnRef.current.classList.contains(cls));
       const nextClass =
         shiftClasses[(shiftClasses.indexOf(currentClass) + 1) % shiftClasses.length];
-
       shiftClasses.forEach(cls => btnRef.current.classList.remove(cls));
       btnRef.current.classList.add(nextClass);
       setErrorShown(true);
@@ -55,10 +53,8 @@ const Login = () => {
         <h1 className="brand-name">🍲 Recipe Maker</h1>
         <p className="tagline">Discover. Cook. Enjoy.</p>
       </div>
-
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Login to Continue</h2>
-
         <div className={`input-box ${errorShown && !validateEmail ? 'error' : ''}`}>
           <label>Email</label>
           <input
@@ -71,7 +67,6 @@ const Login = () => {
             <span className="tooltip">Must include '@'</span>
           )}
         </div>
-
         <div className={`input-box ${errorShown && password === '' ? 'error' : ''}`}>
           <label>Password</label>
           <input
@@ -90,7 +85,6 @@ const Login = () => {
             <span className="tooltip">Password required</span>
           )}
         </div>
-
         <div className="checkbox-wrapper">
           <input
             type="checkbox"
@@ -103,7 +97,6 @@ const Login = () => {
         {errorShown && !agreed && (
           <span className="tooltip">You must accept terms to continue</span>
         )}
-
         <div className="button-wrapper">
           <button
             ref={btnRef}
@@ -114,7 +107,6 @@ const Login = () => {
             Log In
           </button>
         </div>
-
         <p className="register-link">
           Don’t have an account? <Link to="/register">Register</Link>
         </p>

@@ -43,6 +43,36 @@ const Header = () => {
     </ul>
   );
 
+  const navLinksMobile = (
+    <ul className="navbar-links">
+      <li>
+        <Link to="/home" className={location.pathname === '/home' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Home
+        </Link>
+      </li>
+      <li>
+        <Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Categories
+        </Link>
+      </li>
+      <li>
+        <Link to="/about" className={location.pathname === '/about' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          About
+        </Link>
+      </li>
+      <li>
+        <Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Contact
+        </Link>
+      </li>
+      <li className="user-menu" style={{cursor:'pointer'}}>
+        <Link to="/profile" className={location.pathname === '/profile' ? 'active' : ''} onClick={() => setDrawerOpen(false)}>
+          Profile
+        </Link>
+      </li>
+    </ul>
+  );
+
   return (
     <header className="navbar">
       <div className="appname">
@@ -62,7 +92,7 @@ const Header = () => {
         width={260}
         className="mobile-drawer"
       >
-        {navLinks}
+        {navLinksMobile}
       </Drawer>
     </header>
   );

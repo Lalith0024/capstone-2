@@ -26,7 +26,6 @@ function Category() {
 
   useEffect(() => {
     fetchRecipes();
-    // eslint-disable-next-line
   }, [category]);
 
   function fetchRecipes() {
@@ -97,7 +96,11 @@ function Category() {
                       <span>🕒 {recipe.readyInMinutes} min</span>
                       <span>{recipe.servings} servings</span>
                     </div>
-                    <button className="view-recipe-btn" onClick={() => openModal(recipe)}>View Recipe</button>
+                    <div style={{width:'100%'}}>
+                      <button className="view-recipe-btn" style={{width:'100%'}} onClick={() => openModal(recipe)}>
+                        View Recipe
+                      </button>
+                    </div>
                     {recipe.dishTypes && recipe.dishTypes.length > 0 && (
                       <span className="recipe-tag">{recipe.dishTypes[0]}</span>
                     )}
@@ -110,7 +113,7 @@ function Category() {
       </section>
       {modalOpen && (
         <div className="modal-bg" onClick={closeModal}>
-          <div className="modal-box" onClick={e => e.stopPropagation()}>
+          <div className="modal-box" style={{padding:'32px 24px 32px 24px'}} onClick={e => e.stopPropagation()}>
             <button className="modal-close" onClick={closeModal}>&times;</button>
             {modalLoading || !selectedRecipe ? (
               <div className="modal-loading">Loading...</div>
@@ -125,7 +128,7 @@ function Category() {
                 <div className="modal-section">
                   <h3>Ingredients</h3>
                   <ul className="modal-ingredients">
-                    {selectedRecipe.extendedIngredients && selectedRecipe.extendedIngredients.length > 0 ? (
+                    {Array.isArray(selectedRecipe.extendedIngredients) && selectedRecipe.extendedIngredients.length > 0 ? (
                       selectedRecipe.extendedIngredients.map((ing, idx) => (
                         <li key={idx}>{ing.original}</li>
                       ))
@@ -138,13 +141,9 @@ function Category() {
                   <h3>Instructions</h3>
                   <div className="modal-instructions">
                     {selectedRecipe.instructions ? (
-                      <p>{selectedRecipe.instructions}</p>
+                      <p>{selectedRecipe.instructions.replace(/<[^>]+>/g, '').replace(/\d+\./g, '').replace(/\s+/g, ' ').trim()}</p>
                     ) : selectedRecipe.analyzedInstructions && selectedRecipe.analyzedInstructions.length > 0 ? (
-                      <ol>
-                        {selectedRecipe.analyzedInstructions[0].steps.map((step, idx) => (
-                          <li key={idx}>{step.step}</li>
-                        ))}
-                      </ol>
+                      <p>{selectedRecipe.analyzedInstructions[0].steps.map((step) => step.step).join(' ')}</p>
                     ) : (
                       <p>No instructions available.</p>
                     )}

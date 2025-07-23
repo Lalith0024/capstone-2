@@ -98,6 +98,20 @@
   }
 }
 
+.fade-in {
+  animation: fadeInUpContact 0.9s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes fadeInUpContact {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   .contact-wrapper {

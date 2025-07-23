@@ -15,7 +15,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 function App() {
   return (
     <div className="page-container">
-      
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Login />} />
@@ -28,7 +27,6 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
-      
     </div>
   );
 }

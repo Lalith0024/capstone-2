@@ -8,20 +8,17 @@ function About() {
     <>
     <Header/>
     <div className="about-wrapper">
-      
       <section className="hero">
         <div className="hero-overlay">
           <div className="hero-text fade-in-up">
             <h1>Discover the Taste of Home</h1>
             <p>
-              At RecipeFinder, we're not just about food—we're about memories. Our mission is to
+              At RecipeFinder, we're not just about food 4we're about memories. Our mission is to
               bring flavors from around the world to your kitchen with love, accuracy, and ease.
             </p>
           </div>
         </div>
       </section>
-
-     
       <section className="about-content fade-in">
         <div className="text-block">
           <h2>Why RecipeFinder?</h2>
@@ -30,10 +27,7 @@ function About() {
             reviving your grandma's forgotten curry, we're here to help.
           </p>
         </div>
-        
       </section>
-
-    
       <section className="faq-section fade-in">
         <h3>Frequently Asked Questions</h3>
         <div className="faq-item">
@@ -42,7 +36,6 @@ function About() {
             <p>Absolutely. We curate recipes that are tested by our team and contributed by a trusted community of food enthusiasts. We also use AI to improve results.</p>
           </details>
         </div>
-
         <div className="faq-item">
           <details>
             <summary>Can I submit my own recipes?</summary>
@@ -52,7 +45,6 @@ function About() {
             </p>
           </details>
         </div>
-
         <div className="faq-item">
           <details>
             <summary>How often is the recipe database updated?</summary>
@@ -62,7 +54,6 @@ function About() {
             </p>
           </details>
         </div>
-
         <div className="faq-item">
           <details>
             <summary>Is there a mobile version available?</summary>
@@ -72,12 +63,11 @@ function About() {
             </p>
           </details>
         </div>
-
         <div className="faq-item">
           <details>
-            <summary>What if I can’t find a recipe I want?</summary>
+            <summary>What if I can  t find a recipe I want?</summary>
             <p>
-              You can request custom recipes by ingredients or cuisines, and we’ll generate them
+              You can request custom recipes by ingredients or cuisines, and we  ll generate them
               for you using our AI.
             </p>
           </details>
@@ -87,7 +77,6 @@ function About() {
     <Footer/>
     </>
   );
-
 }
 
 export default About;

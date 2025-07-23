@@ -374,7 +374,7 @@
 @media (max-width: 430px) {
   .profile-edit-modal {
     min-width: 0;
-    padding: 10px 2px 8px 2px;
+    padding: 30px;
     border-radius: 12px;
   }
 }

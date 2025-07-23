@@ -13,49 +13,49 @@ function Contact() {
   return (
     <>
     <Header/>
-    <section
-      className="contact-container"
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${BackgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="contact-wrapper">
-        <h2 className="contact-title">Get in Touch</h2>
-        <p className="contact-subtitle">We'd love to hear from you! Send us a message.</p>
-
-        <form
-          className="contact-form"
-          onSubmit={handleSubmit}
+      <div className="fade-in">
+        <section
+          className="contact-container"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(${BackgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required
-          />
-          <textarea
-            name="message"
-            rows="6"
-            placeholder="Your Message"
-            required
-          ></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
+          <div className="contact-wrapper">
+            <h2 className="contact-title">Get in Touch</h2>
+            <p className="contact-subtitle">We'd love to hear from you! Send us a message.</p>
+            <form
+              className="contact-form"
+              onSubmit={handleSubmit}
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Your Message"
+                required
+              ></textarea>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+          <div className="floating-food">🍝</div>
+        </section>
       </div>
-
-      <div className="floating-food">🍝</div>
-    </section>
-    <Footer/>
+      <Footer/>
     </>
+    
   );
 }
 
