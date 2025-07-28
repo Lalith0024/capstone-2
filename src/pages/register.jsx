@@ -9,7 +9,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -73,7 +73,7 @@ const Register = () => {
   return (
     <div className="register-container">
       <div className="register-illustration">
-        <h1 className="brand-name">Recipe Maker</h1>
+        <h1 className="brand-name">RecipeHunt</h1>
         <p className="tagline">Cook, Create & Share your favorite dishes!</p>
       </div>
       <form className="register-form" onSubmit={(e) => e.preventDefault()} data-step={step}>

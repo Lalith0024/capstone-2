@@ -50,7 +50,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-illustration">
-        <h1 className="brand-name">🍲 Recipe Maker</h1>
+        <h1 className="brand-name">🍲 RecipeHunt</h1>
         <p className="tagline">Discover. Cook. Enjoy.</p>
       </div>
       <form className="login-form" onSubmit={handleLogin}>
