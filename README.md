@@ -53,7 +53,11 @@ The responsive architecture ensures seamless performance across devices as the p
 <img width="1512" height="821" alt="Screenshot 2025-08-16 at 12 15 17 AM" src="https://github.com/user-attachments/assets/b9c1932c-2b9e-4548-9de3-3970882dead5" />
 
 ## 🌐 Live Demo
-🔗 **[Click here to explore RecipeHunt](https://capstone-2-chi.vercel.app/home)**  
-_Deployed with Vercel for fast and reliable access._
+<p>
+  <a href="https://capstone-2-chi.vercel.app/home" target="_blank">
+    <img src="https://img.shields.io/badge/Visit%20RecipeHunt-FF5722?style=for-the-badge&logo=vercel&logoColor=white" alt="RecipeHunt Live Link"/>
+  </a>
+</p>
+
 
 
